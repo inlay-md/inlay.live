@@ -1,0 +1,36 @@
+{
+  "name": "inlay.live",
+  "private": true,
+  "version": "0.0.0",
+  "description": "The website for Inlay, a Markdown editor for macOS that runs the HTML, SVG, CSS and JavaScript inside your documents.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.23.4",
+    "pnpm": ">=10"
+  },
+  "packageManager": "pnpm@12.16.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "biome check . && astro check",
+    "lint:fix": "biome check --write .",
+    "assets": "node scripts/gen-assets.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "3.7.4",
+    "@fontsource-variable/inter": "5.3.0",
+    "@fontsource-variable/jetbrains-mono": "5.3.0",
+    "@fontsource-variable/sora": "5.3.0",
+    "astro": "7.4.5",
+    "chart.js": "4.6.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@biomejs/biome": "2.6.3",
+    "sharp": "0.35.5",
+    "typescript": "6.0.3",
+    "wawoff2": "2.0.1"
+  }
+}
