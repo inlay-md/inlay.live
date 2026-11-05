@@ -1,0 +1,109 @@
+---
+// SPDX-License-Identifier: Apache-2.0
+---
+
+<section id="quicklook" class="ql container" aria-labelledby="ql-title">
+  <div class="ql__copy">
+    <div class="eyebrow">Quick Look</div>
+    <h2 id="ql-title" class="h2">Press Space. See the real document.</h2>
+    <p class="lede">
+      The Quick Look extension renders through the same parser as the app, running in JavaScriptCore
+      with no web view. Inline SVG always renders; scripts stay off unless you opt in; everything else
+      falls back to a clean static page.
+    </p>
+  </div>
+
+  <div class="ql__window window" aria-hidden="true">
+    <div class="window__bar ql__bar">
+      <span class="ql__close"></span>
+      <span class="window__title">Roadmap.md</span>
+      <span class="badge-live ql__badge">SVG rendered</span>
+      <span class="ql__open">Open with Inlay</span>
+    </div>
+    <div class="ql__body">
+      <div class="ql__doc-title">Roadmap</div>
+      <svg viewBox="0 0 440 70" width="100%" height="70">
+        <path d="M20 36H420" stroke="#DDE1E7" stroke-width="3"></path>
+        <g font-size="11" font-family="Inter Variable, Inter, sans-serif" text-anchor="middle" fill="#141A22">
+          <circle cx="40" cy="36" r="8" fill="#1F7A7A"></circle><text x="40" y="62">M0</text>
+          <circle cx="116" cy="36" r="8" fill="#1F7A7A"></circle><text x="116" y="62">M1</text>
+          <circle cx="192" cy="36" r="8" fill="#FFFFFF" stroke="#141A22" stroke-width="2"></circle><text x="192" y="62">M2</text>
+          <circle cx="268" cy="36" r="8" fill="#FFFFFF" stroke="#141A22" stroke-width="2"></circle><text x="268" y="62">M3</text>
+          <circle cx="344" cy="36" r="8" fill="#FFFFFF" stroke="#141A22" stroke-width="2"></circle><text x="344" y="62">M4</text>
+          <circle cx="420" cy="36" r="8" fill="#FFFFFF" stroke="#141A22" stroke-width="2"></circle><text x="420" y="62">M5</text>
+        </g>
+      </svg>
+      <div class="placeholder-line" style="width: 90%"></div>
+      <div class="placeholder-line" style="width: 70%"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ql {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+    padding-top: 80px;
+    padding-bottom: 48px;
+  }
+  .ql__copy {
+    flex: 1 1 360px;
+    min-width: 0;
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .ql__window {
+    flex: 1 1 400px;
+    min-width: 0;
+    order: 1;
+    border: 1px solid var(--line);
+    box-shadow: 0 16px 40px rgba(20, 26, 34, 0.12);
+  }
+  .ql__bar {
+    height: 40px;
+    gap: 10px;
+  }
+  .ql__close {
+    display: block;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #ff5f57;
+  }
+  .ql__badge {
+    height: 20px;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .ql__open {
+    display: inline-flex;
+    align-items: center;
+    height: 22px;
+    padding: 0 10px;
+    border-radius: 5px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .ql__body {
+    padding: 22px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ql__doc-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  @media (max-width: 600px) {
+    .ql {
+      padding-top: 56px;
+    }
+  }
+</style>

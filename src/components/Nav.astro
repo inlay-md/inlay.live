@@ -1,0 +1,75 @@
+---
+// SPDX-License-Identifier: Apache-2.0
+import { site } from '../data/site';
+import Logo from './Logo.astro';
+---
+
+<nav class="nav container" aria-label="Main">
+  <a class="nav__home" href="#top" aria-label="Inlay, back to top">
+    <Logo on="ink" size={30} wordmark />
+  </a>
+  <div class="nav__spacer"></div>
+  <div class="nav__links">
+    <a href="#features">Features</a>
+    <a href="#security">Security</a>
+    <a href="#quicklook">Quick Look</a>
+    <a href={site.repo} rel="noopener">GitHub</a>
+  </div>
+  <a class="nav__cta" href="#waitlist">Get early access</a>
+</nav>
+
+<style>
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 28px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: var(--paper);
+  }
+  .nav__home {
+    color: var(--paper);
+    text-decoration: none;
+  }
+  .nav__spacer {
+    flex: 1;
+  }
+  .nav__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 24px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .nav__links a {
+    color: var(--paper);
+    text-decoration: none;
+    padding: 8px 0;
+  }
+  .nav__links a:hover {
+    color: var(--brass-bright);
+  }
+  .nav__cta {
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: var(--radius-control);
+    background: var(--brass-bright);
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .nav__cta:hover {
+    background: #e8b65a;
+    color: var(--ink);
+  }
+  @media (max-width: 560px) {
+    .nav__links {
+      order: 3;
+      width: 100%;
+    }
+  }
+</style>

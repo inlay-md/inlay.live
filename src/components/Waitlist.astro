@@ -1,0 +1,100 @@
+---
+// SPDX-License-Identifier: Apache-2.0
+import { site, waitlistAction } from '../data/site';
+
+const hasForm = Boolean(waitlistAction);
+---
+
+<section id="waitlist" class="wl container" aria-labelledby="wl-title">
+  <div class="wl__panel">
+    <div class="wl__copy">
+      <h2 id="wl-title" class="wl__title">Be first to open it.</h2>
+      <p class="wl__text">
+        Inlay is open source under Apache-2.0 and in early development.
+        {hasForm
+          ? ' Leave your email for the first build, or follow along on GitHub.'
+          : ' Watch the repository to hear about the first build, or star it to follow along.'}
+      </p>
+    </div>
+    {
+      hasForm ? (
+        <form class="wl__form" method="post" action={waitlistAction}>
+          <label for="email" class="visually-hidden">Email address</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            placeholder="you@example.com"
+            class="wl__input"
+          />
+          <button type="submit" class="button button--ink">Join the waitlist</button>
+        </form>
+      ) : (
+        <div class="wl__actions">
+          <a class="button button--ink" href={site.repo} rel="noopener">Watch on GitHub</a>
+          <a class="button button--ghost" href={site.releases} rel="noopener">Releases</a>
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .wl {
+    padding-top: 40px;
+    padding-bottom: 88px;
+  }
+  .wl__panel {
+    border-radius: var(--radius-panel);
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    padding: clamp(28px, 4vw, 56px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    align-items: center;
+  }
+  .wl__copy {
+    flex: 1 1 380px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .wl__title {
+    font-weight: 700;
+    font-size: clamp(26px, 3vw, 36px);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+  .wl__text {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .wl__form,
+  .wl__actions {
+    flex: 1 1 360px;
+    min-width: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .wl__input {
+    flex: 1 1 220px;
+    height: 48px;
+    padding: 0 16px;
+    border: 1px solid var(--line-2);
+    border-radius: var(--radius-control);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--paper);
+  }
+  .wl__input:focus-visible {
+    border-color: var(--brass);
+    outline-offset: 0;
+  }
+</style>

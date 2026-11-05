@@ -1,0 +1,153 @@
+---
+// SPDX-License-Identifier: Apache-2.0
+// The sample from the Inlay README, highlighted by hand so the page ships no highlighter.
+const source = `<span class="tk-comment"># Quarterly report</span>
+
+Revenue grew in every region.
+
+<span class="tk-tag">&lt;canvas</span> <span class="tk-attr">id</span>=<span class="tk-str">"revenue"</span><span class="tk-tag">&gt;&lt;/canvas&gt;</span>
+<span class="tk-tag">&lt;script</span> <span class="tk-attr">src</span>=<span class="tk-str">"https://cdn.jsdelivr.net/npm/chart.js@4"</span><span class="tk-tag">&gt;&lt;/script&gt;</span>
+<span class="tk-tag">&lt;script&gt;</span>
+  <span class="tk-kw">new</span> Chart(document.getElementById(<span class="tk-str">'revenue'</span>), {
+    type: <span class="tk-str">'bar'</span>,
+    data: { labels: [<span class="tk-str">'EU'</span>, <span class="tk-str">'US'</span>, <span class="tk-str">'APAC'</span>],
+            datasets: [{ label: <span class="tk-str">'Q3'</span>, data: [12, 19, 7] }] },
+  });
+<span class="tk-tag">&lt;/script&gt;</span>`;
+---
+
+<section class="diff container" aria-labelledby="diff-title">
+  <div class="diff__intro">
+    <div class="eyebrow">The difference</div>
+    <h2 id="diff-title" class="h2">Most Markdown apps strip this. Inlay runs it.</h2>
+    <p class="lede">
+      A <code class="inline-code">&lt;script&gt;</code> that draws a chart, an inline SVG diagram, a
+      <code class="inline-code">&lt;style&gt;</code> block or a slider widget runs as it would on a web
+      page, in an isolated view that cannot reach your Mac or the network.
+    </p>
+  </div>
+
+  <div class="diff__panes">
+    <pre class="diff__source" tabindex="0" aria-label="Markdown source of the quarterly report" set:html={source}></pre>
+
+    <div class="diff__rendered">
+      <div class="diff__rendered-head">
+        <span class="diff__rendered-title">Quarterly report</span>
+        <span class="badge-live">rendered offline</span>
+      </div>
+      <p class="diff__rendered-text">Revenue grew in every region.</p>
+      <div class="diff__chart">
+        <canvas id="revenue" width="400" height="190" role="img" aria-label="Bar chart of Q3 revenue: EU 12, US 19, APAC 7"></canvas>
+        <noscript>
+          <svg viewBox="0 0 400 190" width="100%" height="190" role="img" aria-label="Bar chart of Q3 revenue: EU 12, US 19, APAC 7"><g stroke="#DDE1E7"><path d="M34 160H390"></path><path d="M34 120H390"></path><path d="M34 80H390"></path><path d="M34 40H390"></path></g><g font-size="11" fill="#5B6673" font-family="Inter, sans-serif" text-anchor="end"><text x="26" y="164">0</text><text x="26" y="124">10</text><text x="26" y="84">20</text></g><rect x="80" y="112" width="60" height="48" rx="3" fill="#1F7A7A"></rect><rect x="190" y="84" width="60" height="76" rx="3" fill="#1F7A7A"></rect><rect x="300" y="132" width="60" height="28" rx="3" fill="#1F7A7A"></rect><g font-size="12" fill="#141A22" font-family="Inter, sans-serif" text-anchor="middle"><text x="110" y="180">EU</text><text x="220" y="180">US</text><text x="330" y="180">APAC</text></g></svg>
+        </noscript>
+      </div>
+      <p class="diff__caption">
+        This chart is drawn by Chart.js from the script on the left. In Inlay the CDN URL is swapped for
+        the copy bundled with the app, so no network request is made.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script src="../scripts/demo-chart.ts"></script>
+
+<style>
+  .diff {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    padding-top: 88px;
+    padding-bottom: 40px;
+  }
+  .diff__intro {
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .diff__panes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+  }
+  .diff__source {
+    flex: 1 1 420px;
+    min-width: 0;
+    margin: 0;
+    padding: 22px 24px;
+    border-radius: var(--radius-card);
+    border-left: 3px solid var(--brass-bright);
+    background: var(--ink);
+    color: var(--paper-3);
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    line-height: 1.65;
+    overflow-x: auto;
+    tab-size: 2;
+  }
+  .tk-comment {
+    color: var(--muted-on-ink);
+  }
+  .tk-tag {
+    color: var(--verdigris-bright);
+  }
+  .tk-attr {
+    color: var(--brass-bright);
+  }
+  .tk-str {
+    color: var(--brass-pale);
+  }
+  .tk-kw {
+    color: var(--lilac);
+  }
+  .diff__rendered {
+    flex: 1 1 420px;
+    min-width: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .diff__rendered-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .diff__rendered-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .diff__rendered-text {
+    font-size: 15px;
+    color: var(--ink-2);
+  }
+  .diff__chart {
+    position: relative;
+    width: 100%;
+    height: 190px;
+  }
+  .diff__chart canvas {
+    width: 100% !important;
+    height: 190px !important;
+  }
+  .diff__caption {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+  @media (max-width: 600px) {
+    .diff {
+      padding-top: 64px;
+    }
+    .diff__source {
+      font-size: 12px;
+      padding: 18px;
+    }
+  }
+</style>

@@ -1,0 +1,119 @@
+---
+// SPDX-License-Identifier: Apache-2.0
+import { site } from '../data/site';
+
+const points = [
+  'Each document gets its own web view with a non-persistent data store and no bridge to native code.',
+  'A Content Security Policy blocks fetch, XHR and WebSockets. A per-document “Allow network” toggle relaxes it for files you trust.',
+  "The app serves only files in the document's folder and resolves every path to block traversal.",
+  'Downloaded files open with scripts off until you choose “Trust this document”. Inlay never modifies the file to remember that.',
+];
+---
+
+<section id="security" class="security" aria-labelledby="security-title">
+  <div class="security__inner container">
+    <div class="security__copy">
+      <div class="eyebrow eyebrow--on-ink">Security model</div>
+      <h2 id="security-title" class="h2">
+        Running your document's JavaScript is the point. So the view is locked down.
+      </h2>
+      <ul class="security__list">
+        {
+          points.map((p) => (
+            <li>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#5FC9C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12l5 5 9-10" />
+              </svg>
+              <span>{p}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <a class="security__link" href={site.decisions} rel="noopener">Read the full policy, ADR-0007 →</a>
+    </div>
+
+    <div class="security__art">
+      <svg viewBox="0 0 360 300" width="100%" height="auto" role="img" aria-label="A chart tile inside a glass case; a crossed-out cloud and a crossed-out chip sit outside it">
+        <rect x="70" y="30" width="220" height="200" rx="16" fill="#1E2833" stroke="#5FC9C0" stroke-width="2"></rect>
+        <rect x="98" y="58" width="164" height="144" rx="10" fill="#F7F8FA"></rect>
+        <rect x="116" y="76" width="90" height="8" rx="4" fill="#C5CCD6"></rect>
+        <rect x="116" y="92" width="120" height="6" rx="3" fill="#DDE1E7"></rect>
+        <rect x="116" y="112" width="128" height="72" rx="8" fill="#141A22"></rect>
+        <rect x="118" y="114" width="124" height="68" rx="7" fill="none" stroke="#E0A83A" stroke-width="2"></rect>
+        <rect x="134" y="150" width="16" height="24" rx="3" fill="#E0A83A"></rect>
+        <rect x="160" y="132" width="16" height="42" rx="3" fill="#E0A83A"></rect>
+        <rect x="186" y="142" width="16" height="32" rx="3" fill="#5FC9C0"></rect>
+        <rect x="212" y="126" width="16" height="48" rx="3" fill="#E0A83A"></rect>
+        <path d="M22 262a14 14 0 0 1 2-27.8A19 19 0 0 1 60 230a15 15 0 0 1 2 32H22z" fill="none" stroke="#A9B3BF" stroke-width="2"></path>
+        <path d="M14 222l56 56" stroke="#E0A83A" stroke-width="3" stroke-linecap="round"></path>
+        <rect x="296" y="236" width="44" height="44" rx="6" fill="none" stroke="#A9B3BF" stroke-width="2"></rect>
+        <rect x="308" y="248" width="20" height="20" rx="3" fill="#A9B3BF"></rect>
+        <path d="M290 230l56 56" stroke="#E0A83A" stroke-width="3" stroke-linecap="round"></path>
+        <text x="180" y="262" text-anchor="middle" font-size="12" font-family="Inter Variable, Inter, sans-serif" fill="#A9B3BF">isolated view</text>
+        <text x="42" y="294" text-anchor="middle" font-size="11" font-family="Inter Variable, Inter, sans-serif" fill="#A9B3BF">network</text>
+        <text x="318" y="294" text-anchor="middle" font-size="11" font-family="Inter Variable, Inter, sans-serif" fill="#A9B3BF">native</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .security {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .security__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+  .security__copy {
+    flex: 1 1 400px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .security__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--text-on-ink);
+  }
+  .security__list li {
+    display: flex;
+    gap: 12px;
+  }
+  .security__list svg {
+    flex: none;
+    margin-top: 2px;
+  }
+  .security__link {
+    color: var(--brass-bright);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    align-self: flex-start;
+  }
+  .security__link:hover {
+    color: var(--brass-pale);
+    text-decoration: underline;
+  }
+  .security__art {
+    flex: 1 1 360px;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+  }
+  .security__art svg {
+    max-width: 440px;
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+// SPDX-License-Identifier: Apache-2.0
+/**
+ * The Inlay mark: a page with a tile set into it. The tile inverts with the
+ * background; the brass seam never changes colour. Below 24px the bars drop.
+ */
+interface Props {
+  /** Background the mark sits on. */
+  on?: 'light' | 'ink';
+  size?: number;
+  /** Render the Sora wordmark beside the mark. */
+  wordmark?: boolean;
+  label?: string;
+  class?: string;
+}
+
+const {
+  on = 'light',
+  size = 30,
+  wordmark = false,
+  label = 'Inlay',
+  class: className,
+} = Astro.props;
+
+const page = on === 'ink' ? '#141A22' : '#FFFFFF';
+const stroke = on === 'ink' ? '#FFFFFF' : '#141A22';
+const tile = on === 'ink' ? '#FFFFFF' : '#141A22';
+const brassBar = on === 'ink' ? '#9A6E1A' : '#E0A83A';
+const tealBar = on === 'ink' ? '#1F7A7A' : '#5FC9C0';
+const simplified = size < 24;
+---
+
+<span class:list={['logo', className]} style={`--logo-size:${size}px`}>
+  <svg viewBox="0 0 48 48" width={size} height={size} role="img" aria-label={wordmark ? undefined : label} aria-hidden={wordmark ? 'true' : undefined}>
+    <rect x="7" y="3" width="34" height="42" rx="5" fill={page} stroke={stroke} stroke-width="3" />
+    {!simplified && <rect x="14" y="11" width="20" height="3" rx="1.5" fill={stroke} />}
+    {!simplified && <rect x="14" y="18" width="14" height="3" rx="1.5" fill={stroke} />}
+    <rect x="13" y="25" width="22" height="14" rx="2.5" fill={tile} />
+    <rect x="14.5" y="26.5" width="19" height="11" rx="1.5" fill="none" stroke="#E0A83A" stroke-width="1.2" />
+    {!simplified && <rect x="18" y="32" width="3" height="4" rx="0.8" fill={brassBar} />}
+    {!simplified && <rect x="22.5" y="29.5" width="3" height="6.5" rx="0.8" fill={brassBar} />}
+    {!simplified && <rect x="27" y="31" width="3" height="5" rx="0.8" fill={tealBar} />}
+  </svg>
+  {wordmark && <span class="logo__word">{label}</span>}
+</span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--logo-size) / 3);
+    color: inherit;
+  }
+  .logo__word {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: calc(var(--logo-size) * 0.74);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+</style>

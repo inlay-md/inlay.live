@@ -1,0 +1,52 @@
+---
+// SPDX-License-Identifier: Apache-2.0
+import Logo from '../components/Logo.astro';
+import { site } from '../data/site';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Page not found · Inlay" path="/404" noindex>
+  <main id="main" class="nf">
+    <a class="nf__home" href="/" aria-label="Inlay home"><Logo on="light" size={40} wordmark /></a>
+    <h1 class="nf__title">Nothing inlaid here.</h1>
+    <p class="nf__text">The page you asked for does not exist. The file on disk is untouched.</p>
+    <div class="nf__actions">
+      <a class="button button--ink" href="/">Back to inlay.live</a>
+      <a class="button button--ghost" href={site.repo} rel="noopener">GitHub</a>
+    </div>
+  </main>
+</Base>
+
+<style>
+  .nf {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 48px var(--gutter);
+  }
+  .nf__home {
+    color: var(--ink);
+    text-decoration: none;
+    margin-bottom: 20px;
+  }
+  .nf__title {
+    font-weight: 700;
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+  .nf__text {
+    font-size: 17px;
+    color: var(--muted);
+  }
+  .nf__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+</style>
