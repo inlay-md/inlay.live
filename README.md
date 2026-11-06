@@ -20,6 +20,7 @@ Built with [Astro](https://astro.build) as a static site and deployed on Vercel 
 
 - `src/pages/index.astro` assembles the landing page from the sections in `src/components/`.
 - `src/data/site.ts` holds the copy that repeats (URLs, description, copyright); `src/data/features.ts` holds the feature cards.
+- `src/data/progress.ts` holds the milestone statuses shown in the Progress section and the Quick Look mock. Update it, and its `updated` date, whenever a milestone merges in the Inlay repository, keeping it in step with Inlay's `docs/PLAN.md` and README roadmap.
 - `src/styles/global.css` defines the brand tokens (Ink, Paper, Brass, Verdigris) and self-hosted fonts (Inter, Sora, JetBrains Mono via Fontsource).
 - `src/scripts/demo-chart.ts` runs the Chart.js example shown in the hero demo.
 - `vercel.json` sets security headers (CSP, HSTS) and long-lived caching for hashed assets.
