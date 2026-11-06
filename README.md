@@ -24,6 +24,7 @@ Built with [Astro](https://astro.build) as a static site and deployed on Vercel 
 - `src/styles/global.css` defines the brand tokens (Ink, Paper, Brass, Verdigris) and self-hosted fonts (Inter, Sora, JetBrains Mono via Fontsource).
 - `src/scripts/demo-chart.ts` runs the Chart.js example shown in the hero demo.
 - `vercel.json` sets security headers (CSP, HSTS) and long-lived caching for hashed assets.
+- `src/layouts/Base.astro` loads Vercel Web Analytics (`@vercel/analytics`), which fetches `/_vercel/insights/script.js` and reports to `/_vercel/insights/*` on the same origin, so the CSP allows `connect-src 'self'`. `astro.config.ts` keeps scripts out of the HTML because the CSP blocks inline scripts.
 
 ## Waitlist form
 
