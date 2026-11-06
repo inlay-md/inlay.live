@@ -1,6 +1,7 @@
 ---
 // SPDX-License-Identifier: Apache-2.0
 import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import { site } from '../data/site';
 import '../styles/global.css';
 
@@ -57,5 +58,6 @@ const ogImage = new URL('/og.png', site.url).href;
     <a class="skip-link" href="#main">Skip to content</a>
     <slot />
     <Analytics />
+    <SpeedInsights />
   </body>
 </html>
