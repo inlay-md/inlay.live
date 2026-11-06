@@ -8,4 +8,11 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'auto',
   },
+  vite: {
+    build: {
+      // Keep scripts as external files: the CSP in vercel.json allows only
+      // script-src 'self', so an inlined <script> would be blocked.
+      assetsInlineLimit: (file) => (/\.[cm]?[jt]s$/.test(file) ? false : undefined),
+    },
+  },
 });
