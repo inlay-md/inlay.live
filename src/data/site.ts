@@ -9,6 +9,7 @@ export const site = {
   repo: 'https://github.com/inlay-md/Inlay',
   issues: 'https://github.com/inlay-md/Inlay/issues',
   releases: 'https://github.com/inlay-md/Inlay/releases',
+  plan: 'https://github.com/inlay-md/Inlay/blob/main/docs/PLAN.md',
   decisions: 'https://github.com/inlay-md/Inlay/blob/main/docs/DECISIONS.md',
   contributing: 'https://github.com/inlay-md/Inlay/blob/main/CONTRIBUTING.md',
   trademarks: 'https://github.com/inlay-md/Inlay/blob/main/TRADEMARKS.md',

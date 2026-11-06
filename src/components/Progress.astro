@@ -1,0 +1,170 @@
+---
+// SPDX-License-Identifier: Apache-2.0
+import { milestones, statusLabel, updated } from '../data/progress';
+import { site } from '../data/site';
+
+const words = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six'];
+const done = milestones.filter((m) => m.status === 'done').length;
+const doneWord = words[done] ?? String(done);
+const totalWord = (words[milestones.length] ?? String(milestones.length)).toLowerCase();
+const updatedLabel = new Date(`${updated}T00:00:00Z`).toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+---
+
+<section id="progress" class="progress container" aria-labelledby="progress-title">
+  <div class="progress__intro">
+    <div class="eyebrow">Progress</div>
+    <h2 id="progress-title" class="h2">{doneWord} of {totalWord} milestones built.</h2>
+    <p class="lede">
+      The Read view, Source and Split modes and the WYSIWYG editor are built, tested in Chromium,
+      WebKit and Xcode, and merged. Quick Look is next. Nothing has been released yet.
+    </p>
+  </div>
+
+  <div
+    class="progress__track"
+    style={`--count: ${milestones.length}`}
+    role="progressbar"
+    aria-label="Milestones built"
+    aria-valuemin="0"
+    aria-valuemax={milestones.length}
+    aria-valuenow={done}
+    aria-valuetext={`${done} of ${milestones.length} milestones built`}
+  >
+    {milestones.map((m) => <span class:list={['progress__seg', `progress__seg--${m.status}`]} />)}
+  </div>
+
+  <ol class="progress__list">
+    {
+      milestones.map((m) => (
+        <li class:list={['milestone', `milestone--${m.status}`]}>
+          <div class="milestone__head">
+            <span class="milestone__id">{m.id}</span>
+            <span class:list={['milestone__status', `milestone__status--${m.status}`]}>
+              {statusLabel[m.status]}
+            </span>
+          </div>
+          <h3 class="milestone__title">{m.title}</h3>
+          <p class="milestone__body">{m.body}</p>
+        </li>
+      ))
+    }
+  </ol>
+
+  <p class="progress__note">
+    Updated <time datetime={updated}>{updatedLabel}</time>.{" "}
+    <a href={site.plan} rel="noopener">See the full task list on GitHub</a>.
+  </p>
+</section>
+
+<style>
+  .progress {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-top: 56px;
+    padding-bottom: 48px;
+  }
+  .progress__intro {
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .progress__track {
+    display: grid;
+    grid-template-columns: repeat(var(--count), 1fr);
+    gap: 6px;
+  }
+  .progress__seg {
+    height: 8px;
+    border-radius: 4px;
+    background: var(--paper-3);
+  }
+  .progress__seg--done {
+    background: var(--verdigris);
+  }
+  .progress__seg--next {
+    background: var(--brass-bright);
+  }
+  .progress__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: 20px;
+  }
+  .milestone {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .milestone--next {
+    border-left: 3px solid var(--brass-bright);
+  }
+  .milestone--planned {
+    background: var(--paper-2);
+  }
+  .milestone__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .milestone__id {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .milestone__status {
+    display: inline-flex;
+    align-items: center;
+    height: 22px;
+    padding: 0 9px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .milestone__status--done {
+    background: var(--verdigris-bg);
+    color: var(--verdigris-text);
+  }
+  .milestone__status--next {
+    background: #fbf1df;
+    color: var(--brass-dark);
+  }
+  .milestone__status--planned {
+    border: 1px solid var(--line-2);
+    color: var(--muted);
+  }
+  .milestone__title {
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: -0.02em;
+  }
+  .milestone__body {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .progress__note {
+    font-size: 14px;
+    color: var(--muted);
+  }
+  @media (max-width: 600px) {
+    .progress {
+      padding-top: 40px;
+    }
+  }
+</style>
