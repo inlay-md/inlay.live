@@ -8,4 +8,12 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'auto',
   },
+  vite: {
+    build: {
+      // The CSP in vercel.json only allows same-origin script files
+      // (script-src 'self'), so never inline small script chunks into the
+      // HTML. Other assets keep Vite's default limit.
+      assetsInlineLimit: (filePath) => (filePath.endsWith('.js') ? false : undefined),
+    },
+  },
 });
